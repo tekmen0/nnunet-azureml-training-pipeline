@@ -15,9 +15,11 @@ if __name__ == "__main__":
   except FileExistsError:
     pass
 
-  #result1 = subprocess.run(['gdown', 'https://drive.google.com/uc?id=1vvgcavq_Za42T5YUVQZ2U6wgg4idq6Wy&confirm=t'], stdout=subprocess.PIPE)
-  #print(result1.stdout.decode('ascii'))
-  #print("command1 executed")
+  print()
+
+  result1 = subprocess.run(['gdown', 'https://drive.google.com/uc?id=1vvgcavq_Za42T5YUVQZ2U6wgg4idq6Wy&confirm=t'], stdout=subprocess.PIPE)
+  print(result1.stdout.decode('ascii'))
+  print("command1 executed")
 
   #os.chdir(f"{nnUNet_raw_data_base}/nnUNet_raw_data/")
   result2 = subprocess.run(['tar', '-xf', "Task05_Prostate.tar", "-C", f"{nnUNet_raw_data_base}/nnUNet_raw_data/"], stdout=subprocess.PIPE)
@@ -33,8 +35,19 @@ if __name__ == "__main__":
   result4 = subprocess.run(['nnUNet_plan_and_preprocess', '-t', '5', '--verify_dataset_integrity'], stdout=subprocess.PIPE)
   print(result4)
   print(result4.stdout.decode('ascii'))
-  print("command4 executed")
-  result5 = subprocess.run(['nnUNet_train', '3d_fullres', 'nnUNetTrainerV2', 'Task005_Prostate', '0', '--npz'], stdout=subprocess.PIPE)
+  print("command4 executed with single thread")
+
+  result6 = subprocess.run(["df", "-h"], stdout=subprocess.PIPE)
+  print(result6)
+  print(result6.stdout.decode('ascii'))
+  print("command6 executed")
+
+  result5 = subprocess.run(['nnUNet_train', '2d', 'nnUNetTrainerV2', 'Task005_Prostate', '0', '--npz'], stdout=subprocess.PIPE)
   print(result5)
   print(result5.stdout.decode('ascii'))
   print("command5 executed")
+
+  result7 = subprocess.run(["df", "-h"], stdout=subprocess.PIPE)
+  print(result7)
+  print(result7.stdout.decode('ascii'))
+  print("command7 executed")
