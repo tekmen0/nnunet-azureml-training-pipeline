@@ -45,9 +45,9 @@ RUN pip install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f htt
 RUN conda update -y conda && \
     python -m pip install -U pip && \
     python -m pip install nnunet && \
-    ! pip install -U python-dateutil && \
+    python -m pip install gdown && \
+    pyhon -m pip install -U python-dateutil && \
     python -m pip install -U git+https://github.com/FabianIsensee/hiddenlayer.git@more_plotted_details#egg=hiddenlayer && \
     conda clean -ya && \
     rm -rf $(python -m pip cache dir)
-    ! pip install gdown
     
